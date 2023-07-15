@@ -8,6 +8,7 @@ import android.widget.CalendarView
 import android.widget.TextView
 import androidx.core.view.children
 import com.hong_dev.fitnessdiary.databinding.ActivityMainBinding
+import com.hong_dev.fitnessdiary.databinding.CalendarDayBinding
 import com.kizitonwose.calendar.core.CalendarDay
 import com.kizitonwose.calendar.core.CalendarMonth
 import com.kizitonwose.calendar.core.firstDayOfWeekFromLocale
@@ -34,6 +35,10 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
+        class DayViewContainer(view: View) : ViewContainer(view) {
+            val textView = CalendarDayBinding.bind(view).calendarDayText
+        }
+
         calendarView = binding.OneDayCalendar
         val daysOfWeek = daysOfWeek(firstDayOfWeek = DayOfWeek.SUNDAY)
         val currentMonth = YearMonth.now()
@@ -57,6 +62,8 @@ class MainActivity : AppCompatActivity() {
             val title = dayOfWeek.getDisplayName(TextStyle.SHORT, Locale.getDefault())
             textView.text = title
         }
+
+
 
 
 
