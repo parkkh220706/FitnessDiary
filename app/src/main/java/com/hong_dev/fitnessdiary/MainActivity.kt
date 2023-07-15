@@ -6,9 +6,11 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.CalendarView
 import android.widget.TextView
+import androidx.appcompat.widget.LinearLayoutCompat
 import androidx.core.view.children
 import com.hong_dev.fitnessdiary.databinding.ActivityMainBinding
 import com.hong_dev.fitnessdiary.databinding.CalendarDayBinding
+import com.hong_dev.fitnessdiary.databinding.CalendarHeaderBinding
 import com.kizitonwose.calendar.core.CalendarDay
 import com.kizitonwose.calendar.core.CalendarMonth
 import com.kizitonwose.calendar.core.firstDayOfWeekFromLocale
@@ -17,6 +19,7 @@ import com.kizitonwose.calendar.view.WeekCalendarView
 import com.kizitonwose.calendar.core.daysOfWeek
 import com.kizitonwose.calendar.view.MonthHeaderFooterBinder
 import com.kizitonwose.calendar.view.ViewContainer
+
 import java.time.DayOfWeek
 import java.time.LocalDate
 import java.time.YearMonth
@@ -37,6 +40,10 @@ class MainActivity : AppCompatActivity() {
 
         class DayViewContainer(view: View) : ViewContainer(view) {
             val textView = CalendarDayBinding.bind(view).calendarDayText
+        }
+
+        class MonthViewContainer(view: View) : ViewContainer(view){
+            val textView = CalendarHeaderBinding.bind(view).headerTitle
         }
 
         calendarView = binding.OneDayCalendar
@@ -62,6 +69,18 @@ class MainActivity : AppCompatActivity() {
             val title = dayOfWeek.getDisplayName(TextStyle.SHORT, Locale.getDefault())
             textView.text = title
         }
+
+        binding.OneDayCalendar.monthHeaderBinder =
+            object : MonthHeaderFooterBinder<MonthViewContainer> {
+                override fun create(view: View) = MonthViewContainer(view)
+
+                override fun bind(container: MonthViewContainer, data: CalendarMonth) {
+                    container.textView.text = data.yearMonth.month.name.toLowerCase().capitalize()
+
+                }
+            }
+
+
 
 
 
