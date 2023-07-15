@@ -43,10 +43,11 @@ class MainActivity : AppCompatActivity() {
         }
 
         class MonthViewContainer(view: View) : ViewContainer(view){
-            val textView = CalendarHeaderBinding.bind(view).headerTitle
+            val binding = CalendarHeaderBinding.bind(view)
         }
 
         calendarView = binding.OneDayCalendar
+
         val daysOfWeek = daysOfWeek(firstDayOfWeek = DayOfWeek.SUNDAY)
         val currentMonth = YearMonth.now()
         val startMonth = currentMonth.minusMonths(240)  // Adjust as needed
@@ -63,29 +64,29 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-        val titleContainer = findViewById<ViewGroup>(R.id.titlesContainer)
-        titleContainer.children.map { it as TextView }.forEachIndexed { index, textView ->
-            val dayOfWeek = daysOfWeek[index]
-            val title = dayOfWeek.getDisplayName(TextStyle.SHORT, Locale.getDefault())
-            textView.text = title
+        calendarView.monthHeaderBinder = object : MonthHeaderFooterBinder<MonthViewContainer>{
+            override fun bind(container: MonthViewContainer, data: CalendarMonth) {
+                if (container.binding.root.tag == null){
+                    container.binding.root.tag = data.yearMonth
+                    container.binding.legendLayout.root.children.map { it as TextView }.forEachIndexed { index, tv ->
+                        tv.text = daysOfWeek[index].getDisplayName(TextStyle.SHORT, Locale.getDefault())
+                    }
+                }
+            }   
+
+            override fun create(view: View) = MonthViewContainer(view)
+
         }
 
-        binding.OneDayCalendar.monthHeaderBinder =
-            object : MonthHeaderFooterBinder<MonthViewContainer> {
-                override fun create(view: View) = MonthViewContainer(view)
+        calendarView.monthScrollListener = {
+            updateTitle()
+        }
 
-                override fun bind(container: MonthViewContainer, data: CalendarMonth) {
-                    container.textView.text = data.yearMonth.month.name.toLowerCase().capitalize()
+    }
 
-                }
-            }
-
-
-
-
-
-
-
-
+    fun updateTitle(){
+        val month = binding.OneDayCalendar.findFirstVisibleMonth()?.yearMonth ?: return
+        binding.YearText.text = month.year.toString()
+        binding.MonthText.text = month.month.name
     }
 }
