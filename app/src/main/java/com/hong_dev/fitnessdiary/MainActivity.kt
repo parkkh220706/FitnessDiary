@@ -2,12 +2,16 @@ package com.hong_dev.fitnessdiary
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.Gravity
 import android.view.View
 import android.view.ViewGroup
 import android.widget.CalendarView
 import android.widget.TextView
+import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.widget.LinearLayoutCompat
 import androidx.core.view.children
+import androidx.drawerlayout.widget.DrawerLayout
+import com.google.android.material.navigation.NavigationView
 import com.hong_dev.fitnessdiary.databinding.ActivityMainBinding
 import com.hong_dev.fitnessdiary.databinding.CalendarDayBinding
 import com.hong_dev.fitnessdiary.databinding.CalendarHeaderBinding
@@ -46,7 +50,24 @@ class MainActivity : AppCompatActivity() {
             val binding = CalendarHeaderBinding.bind(view)
         }
 
+        binding.btnMenu.setOnClickListener {
+            if (!binding.drawerLayout.isDrawerOpen(Gravity.LEFT)){
+                binding.drawerLayout.openDrawer(Gravity.LEFT)
+            } else {
+                binding.drawerLayout.closeDrawer(Gravity.LEFT)
+            }
+        }
+
+
+
+
+
+
         calendarView = binding.OneDayCalendar
+
+        calendarView.monthScrollListener = {
+            updateTitle()
+        }
 
         val daysOfWeek = daysOfWeek(firstDayOfWeek = DayOfWeek.SUNDAY)
         val currentMonth = YearMonth.now()
@@ -78,9 +99,7 @@ class MainActivity : AppCompatActivity() {
 
         }
 
-        calendarView.monthScrollListener = {
-            updateTitle()
-        }
+
 
     }
 

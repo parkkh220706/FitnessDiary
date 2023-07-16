@@ -7,10 +7,18 @@
     android:orientation="vertical"
     tools:context=".MainActivity">
 
+
+
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/Appbar">
+
+        <Button
+            android:id="@+id/btn_menu"
+            android:layout_width="40dp"
+            android:layout_height="30dp"
+            android:background="@drawable/ic_menu"/>
 
         <TextView
             android:id="@+id/YearText"
@@ -18,35 +26,54 @@
             android:textStyle="bold"
             android:paddingHorizontal="6dp"
             android:text="2023"
+            android:layout_gravity="center_horizontal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
 
         <TextView
             android:id="@+id/MonthText"
             android:text="July"
-            android:textSize="38sp"
+            android:textSize="30sp"
+            android:layout_gravity="center_horizontal"
             android:letterSpacing="0.2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
 
-
-
     </com.google.android.material.appbar.AppBarLayout>
 
 
-    <androidx.core.widget.NestedScrollView
+    <androidx.drawerlayout.widget.DrawerLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:id="@+id/drawer_layout"
+        android:layout_height="match_parent">
 
-        <com.kizitonwose.calendar.view.CalendarView
-            app:cv_outDateStyle="endOfGrid"
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:cv_dayViewResource="@layout/calendar_day"
-            app:cv_monthHeaderResource="@layout/calendar_header"
-            android:id="@+id/OneDayCalendar"/>
+            android:layout_height="match_parent">
 
-    </androidx.core.widget.NestedScrollView>
+            <com.kizitonwose.calendar.view.CalendarView
+                app:cv_outDateStyle="endOfGrid"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cv_dayViewResource="@layout/calendar_day"
+                app:cv_monthHeaderResource="@layout/calendar_header"
+                android:id="@+id/OneDayCalendar"/>
+
+        </RelativeLayout>
+
+        <com.google.android.material.navigation.NavigationView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/nav"
+            android:layout_gravity="left"
+            app:headerLayout="@layout/drawer_header"/>
+
+    </androidx.drawerlayout.widget.DrawerLayout>
+
+
+
+
+
 
 
 
