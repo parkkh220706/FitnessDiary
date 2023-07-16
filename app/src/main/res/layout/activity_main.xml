@@ -46,12 +46,31 @@
             </com.google.android.material.appbar.AppBarLayout>
 
             <com.kizitonwose.calendar.view.CalendarView
-                app:cv_outDateStyle="endOfGrid"
+                app:cv_outDateStyle="endOfRow"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:cv_dayViewResource="@layout/calendar_day"
                 app:cv_monthHeaderResource="@layout/calendar_header"
+                android:layout_marginTop="20dp"
                 android:id="@+id/OneDayCalendar"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="날짜"
+                android:id="@+id/tv"/>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_workout"
+                android:layout_marginTop="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+            <Button
+                android:id="@+id/btn_add"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Add Workout" />
 
 
         </androidx.appcompat.widget.LinearLayoutCompat>

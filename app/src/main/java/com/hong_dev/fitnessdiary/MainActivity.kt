@@ -2,6 +2,7 @@ package com.hong_dev.fitnessdiary
 
 import android.content.ContentValues.TAG
 import android.content.Intent
+import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -21,6 +22,7 @@ import com.hong_dev.fitnessdiary.databinding.CalendarDayBinding
 import com.hong_dev.fitnessdiary.databinding.CalendarHeaderBinding
 import com.kizitonwose.calendar.core.CalendarDay
 import com.kizitonwose.calendar.core.CalendarMonth
+import com.kizitonwose.calendar.core.DayPosition
 import com.kizitonwose.calendar.core.firstDayOfWeekFromLocale
 import com.kizitonwose.calendar.view.MonthDayBinder
 import com.kizitonwose.calendar.view.WeekCalendarView
@@ -41,6 +43,8 @@ class MainActivity : AppCompatActivity() {
     private lateinit var calendarView: com.kizitonwose.calendar.view.CalendarView
     private lateinit var drawerLayout: DrawerLayout
 
+    private var selectedDate: LocalDate? = null
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         binding= ActivityMainBinding.inflate(layoutInflater)
@@ -52,6 +56,7 @@ class MainActivity : AppCompatActivity() {
 
         class DayViewContainer(view: View) : ViewContainer(view) {
             val textView = CalendarDayBinding.bind(view).calendarDayText
+
         }
 
         class MonthViewContainer(view: View) : ViewContainer(view){
@@ -99,9 +104,70 @@ class MainActivity : AppCompatActivity() {
             override fun create(view: View) = DayViewContainer(view)
 
             override fun bind(container: DayViewContainer, data: CalendarDay) {
-                container.textView.text = data.date.dayOfMonth.toString()
+                val textView = container.textView
+                textView.text = data.date.dayOfMonth.toString()
+                calendarView.isClickable = true
+
+                if (data.position == DayPosition.MonthDate) {
+                    textView.setTextColor(Color.BLACK)
+                    container.view.setBackgroundResource(if (selectedDate == data.date) R.drawable.bg_selected else 0)
+                } else {
+                    textView.setTextColor(Color.GRAY)
+                    container.view.background = null
+                }
+
+                container.textView.setOnClickListener {
+                    if (data.position == DayPosition.MonthDate && selectedDate != data.date) {
+                        val oldSelectedDate = selectedDate
+                        selectedDate = data.date
+
+                        // 이전에 선택된 날짜의 배경을 제거합니다.
+                        oldSelectedDate?.let { calendarView.notifyDateChanged(it) }
+
+                        // 새로 선택된 날짜와 이전에 선택된 날짜에 대한 배경을 설정합니다.
+                        calendarView.notifyDateChanged(data.date)
+                        if (oldSelectedDate != null) {
+                            calendarView.notifyDateChanged(oldSelectedDate)
+                        }
+                    }
+                    binding.tv.text = selectedDate.toString()
+                }
+
+
             }
         }
+
+/*
+            override fun bind(container: DayViewContainer, data: CalendarDay) {
+                val textView = container.textView
+                textView.text = data.date.dayOfMonth.toString()
+                calendarView.isClickable = true
+*/
+
+
+
+                /*container.textView.setOnClickListener {
+                    if (data.position == DayPosition.MonthDate) {
+                        if (selectedDate == data.date) {
+                            selectedDate = null
+                        } else {
+                            selectedDate = data.date
+                        }
+                        container.view.setBackgroundResource(if (selectedDate == data.date) R.drawable.bg_selected else 0)
+                    }
+                }*/
+
+
+
+                /*if (data.position == DayPosition.MonthDate) {
+                    container.textView.setTextColor(Color.BLACK)
+
+                } else {
+                    container.textView.setTextColor(Color.GRAY)
+                }*/
+
+
+
 
         calendarView.monthHeaderBinder = object : MonthHeaderFooterBinder<MonthViewContainer>{
             override fun bind(container: MonthViewContainer, data: CalendarMonth) {
@@ -111,7 +177,7 @@ class MainActivity : AppCompatActivity() {
                         tv.text = daysOfWeek[index].getDisplayName(TextStyle.SHORT, Locale.getDefault())
                     }
                 }
-            }   
+            }
 
             override fun create(view: View) = MonthViewContainer(view)
 

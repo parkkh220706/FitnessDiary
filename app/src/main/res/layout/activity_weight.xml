@@ -25,12 +25,11 @@
 
         </com.google.android.material.appbar.AppBarLayout>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="시발가주아ㅏㅏ"
-            android:textSize="30sp"
-            android:layout_gravity="center"/>
+        <com.github.mikephil.charting.charts.LineChart
+            android:id="@+id/chart"
+            android:layout_width="match_parent"
+            android:layout_height="500dp"
+            android:padding="10dp"/>
 
     </androidx.appcompat.widget.LinearLayoutCompat>
 

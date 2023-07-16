@@ -5,6 +5,9 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Gravity
 import androidx.drawerlayout.widget.DrawerLayout
+import com.github.mikephil.charting.charts.LineChart
+import com.github.mikephil.charting.components.Description
+import com.github.mikephil.charting.components.XAxis
 import com.hong_dev.fitnessdiary.databinding.ActivityWeightBinding
 
 class WeightActivity : AppCompatActivity() {
@@ -15,6 +18,8 @@ class WeightActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityWeightBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        initLineChart(binding.chart)
 
         drawerLayout = binding.weightDrawerlayout
 
@@ -41,6 +46,26 @@ class WeightActivity : AppCompatActivity() {
         }
 
 
+
+    }
+
+    private fun initLineChart(lineChart: LineChart){
+
+        lineChart.setDrawGridBackground(false)
+        lineChart.setDrawBorders(false)
+
+        val description = Description()
+        description.isEnabled = false
+        lineChart.description = description
+
+        lineChart.animateY(1000)
+        lineChart.animateX(1000)
+
+        val xAxis: XAxis = lineChart.xAxis
+
+        xAxis.position = XAxis.XAxisPosition.BOTTOM
+        xAxis.granularity = 1f
+        xAxis.textColor = R.color.black
 
     }
 }
