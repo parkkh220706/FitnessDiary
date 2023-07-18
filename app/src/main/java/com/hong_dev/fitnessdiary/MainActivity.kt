@@ -14,6 +14,7 @@ import android.widget.CalendarView
 import android.widget.TextView
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.widget.LinearLayoutCompat
+import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.core.view.children
 import androidx.drawerlayout.widget.DrawerLayout
 import com.google.android.material.navigation.NavigationView
@@ -85,9 +86,6 @@ class MainActivity : AppCompatActivity() {
             true
         }
 
-
-
-
             calendarView.monthScrollListener = {
             updateTitle()
         }
@@ -135,8 +133,15 @@ class MainActivity : AppCompatActivity() {
 
 
             }
+
+
         }
 
+        binding.btnAdd.setOnClickListener {
+            val i = Intent(this, EditActivity::class.java)
+            i.putExtra("date", selectedDate.toString())
+            startActivity(i)
+        }
 /*
             override fun bind(container: DayViewContainer, data: CalendarDay) {
                 val textView = container.textView
