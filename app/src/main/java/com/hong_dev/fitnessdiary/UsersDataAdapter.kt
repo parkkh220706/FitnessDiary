@@ -12,12 +12,23 @@ class UsersDataAdapter(private val usersDataList: List<UsersData>):
     class VH(private val binding: RecyclerviewWorkoutBinding) : RecyclerView.ViewHolder(binding.root){
         fun bind(usersData: UsersData){
             binding.apply{
-                tvWorkout.text = "Workout: ${usersData.exercise.workout}"
-                tvTime.text = "Time: ${usersData.exercise.workout}"
-                tvMemo.text = "Memo: ${usersData.exercise.memo}"
+                tvWorkout.text = usersData.exercise.workout
+                tvMemo.text = usersData.exercise.memo
+
+                val hours = usersData.exercise.time.substringBefore(":").toInt()
+                val minutes = usersData.exercise.time.substringAfter(":").toInt()
+
+                val formattedTime = if (hours == 0 && minutes == 0) {
+                    "정보없음"
+                } else {
+                    "${hours}시간 ${minutes}분"
+                }
+
+                tvTime.text = formattedTime
             }
         }
     }
+
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VH {
         val binding = RecyclerviewWorkoutBinding.inflate(LayoutInflater.from(parent.context), parent, false)

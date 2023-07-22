@@ -3,10 +3,10 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    app:cardCornerRadius="5dp"
-    app:contentPadding="10dp"
-    android:layout_margin="8dp"
-    app:cardElevation="8dp">
+    app:contentPaddingLeft="10dp"
+    app:contentPaddingRight="10dp"
+    app:contentPaddingTop="5dp"
+    app:contentPaddingBottom="5dp">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -16,26 +16,34 @@
             android:id="@+id/tv_workout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:includeFontPadding="false"
             android:padding="4dp"
             android:text="Title"
             android:textColor="@color/black"
-            android:textSize="16sp" />
+            android:fontFamily="@font/notosansr"
+            android:textSize="20sp"
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/tv_memo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/tv_workout"
+            android:fontFamily="@font/notosansr"
+            android:includeFontPadding="false"
             android:padding="4dp"
             android:text="메모"
             android:textColor="@color/black"
-            android:textSize="10sp" />
+            android:textSize="14sp" />
 
         <TextView
             android:id="@+id/tv_time"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/notosansr"
+            android:includeFontPadding="false"
             android:text="시간"
+            android:textSize="18sp"
             android:padding="4dp"
             android:layout_alignParentRight="true" />
 

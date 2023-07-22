@@ -6,4 +6,5 @@
     android:gravity="center"
     android:text="22"
     android:textColor="@color/black"
+    android:fontFamily="@font/head2"
     android:textSize="16sp"/>

@@ -67,7 +67,7 @@ class MainActivity : AppCompatActivity() {
         auth = FirebaseAuth.getInstance()
         var uid = auth.currentUser!!.uid
 
-        db.collection(uid).get()
+/*        db.collection(uid).get()
             .addOnSuccessListener { result ->
                 val userDataList = mutableListOf<UsersData>()
                 for (document in result) {
@@ -79,7 +79,7 @@ class MainActivity : AppCompatActivity() {
             }
             .addOnFailureListener() { exception ->
                 Log.w(TAG, "Error getting documents.", exception)
-            }
+            }*/
 
 
 
@@ -156,6 +156,22 @@ class MainActivity : AppCompatActivity() {
                             calendarView.notifyDateChanged(oldSelectedDate)
                         }
                     }
+
+                    db.collection(uid)
+                        .whereEqualTo("date", selectedDate.toString())
+                        .get()
+                        .addOnSuccessListener { result ->
+                            val userDataList = mutableListOf<UsersData>()
+                            for (document in result) {
+                                val exerciseData = document.toObject(UsersData::class.java)
+                                userDataList.add(exerciseData)
+                            }
+                            val adapter = UsersDataAdapter(userDataList)
+                            recyclerview.adapter = adapter
+                        }
+                        .addOnFailureListener() { exception ->
+                            Log.w(TAG, "Error getting documents.", exception)
+                        }
                     binding.tv.text = selectedDate.toString()
                 }
 
