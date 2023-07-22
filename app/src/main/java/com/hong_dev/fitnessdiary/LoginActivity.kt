@@ -5,7 +5,14 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
+import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.result.contract.ActivityResultContracts
+import com.google.android.gms.auth.api.signin.GoogleSignIn
+import com.google.android.gms.auth.api.signin.GoogleSignInClient
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions
+import com.google.android.gms.common.api.ApiException
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.GoogleAuthProvider
 import com.hong_dev.fitnessdiary.databinding.ActivityLoginBinding
 
 class LoginActivity : AppCompatActivity() {
@@ -18,6 +25,8 @@ class LoginActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         auth = FirebaseAuth.getInstance()
+
+
 
 
         binding.btnLogin.setOnClickListener {
@@ -34,7 +43,18 @@ class LoginActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
+        /*binding.btnGoogleLogin.setOnClickListener {
+
+        }*/
+
+        if (auth.currentUser != null){
+            val intent: Intent= Intent(this, MainActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
+
     }
+
 
 
     private fun loginUser(email: String, password: String){
@@ -51,4 +71,7 @@ class LoginActivity : AppCompatActivity() {
                 }
             }
     }
+
+
 }
+

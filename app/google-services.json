@@ -14,7 +14,15 @@
       },
       "oauth_client": [
         {
-          "client_id": "58259815905-jepj8ll51t9qtuol2mu70qkrttner8jg.apps.googleusercontent.com",
+          "client_id": "58259815905-r6j7o39vtrtb93eal250f2u19sjpat95.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.hong_dev.fitnessdiary",
+            "certificate_hash": "6c27a12dc3d2afc0d00345f3724f40ac4dba25f3"
+          }
+        },
+        {
+          "client_id": "58259815905-sl2qv516v2s22o2m3ubre71so2nn9hnn.apps.googleusercontent.com",
           "client_type": 3
         }
       ],

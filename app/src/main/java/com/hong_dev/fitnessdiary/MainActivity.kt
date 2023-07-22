@@ -17,7 +17,12 @@ import androidx.appcompat.widget.LinearLayoutCompat
 import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.core.view.children
 import androidx.drawerlayout.widget.DrawerLayout
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.navigation.NavigationView
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
 import com.hong_dev.fitnessdiary.databinding.ActivityMainBinding
 import com.hong_dev.fitnessdiary.databinding.CalendarDayBinding
 import com.hong_dev.fitnessdiary.databinding.CalendarHeaderBinding
@@ -43,17 +48,40 @@ class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private lateinit var calendarView: com.kizitonwose.calendar.view.CalendarView
     private lateinit var drawerLayout: DrawerLayout
+    private lateinit var recyclerview: RecyclerView
+    lateinit var auth: FirebaseAuth
+    val db = Firebase.firestore
 
     private var selectedDate: LocalDate? = null
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         binding= ActivityMainBinding.inflate(layoutInflater)
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
+        binding.rvWorkout.layoutManager = LinearLayoutManager(this)
+
+        recyclerview = binding.rvWorkout
         drawerLayout = binding.mainDrawerLayout
         calendarView = binding.OneDayCalendar
+        auth = FirebaseAuth.getInstance()
+        var uid = auth.currentUser!!.uid
+
+        db.collection(uid).get()
+            .addOnSuccessListener { result ->
+                val userDataList = mutableListOf<UsersData>()
+                for (document in result) {
+                    val exerciseData = document.toObject(UsersData::class.java)
+                    userDataList.add(exerciseData)
+                }
+                val adapter = UsersDataAdapter(userDataList)
+                recyclerview.adapter = adapter
+            }
+            .addOnFailureListener() { exception ->
+                Log.w(TAG, "Error getting documents.", exception)
+            }
+
+
 
         class DayViewContainer(view: View) : ViewContainer(view) {
             val textView = CalendarDayBinding.bind(view).calendarDayText
@@ -142,37 +170,6 @@ class MainActivity : AppCompatActivity() {
             i.putExtra("date", selectedDate.toString())
             startActivity(i)
         }
-/*
-            override fun bind(container: DayViewContainer, data: CalendarDay) {
-                val textView = container.textView
-                textView.text = data.date.dayOfMonth.toString()
-                calendarView.isClickable = true
-*/
-
-
-
-                /*container.textView.setOnClickListener {
-                    if (data.position == DayPosition.MonthDate) {
-                        if (selectedDate == data.date) {
-                            selectedDate = null
-                        } else {
-                            selectedDate = data.date
-                        }
-                        container.view.setBackgroundResource(if (selectedDate == data.date) R.drawable.bg_selected else 0)
-                    }
-                }*/
-
-
-
-                /*if (data.position == DayPosition.MonthDate) {
-                    container.textView.setTextColor(Color.BLACK)
-
-                } else {
-                    container.textView.setTextColor(Color.GRAY)
-                }*/
-
-
-
 
         calendarView.monthHeaderBinder = object : MonthHeaderFooterBinder<MonthViewContainer>{
             override fun bind(container: MonthViewContainer, data: CalendarMonth) {
@@ -188,6 +185,15 @@ class MainActivity : AppCompatActivity() {
 
         }
 
+/*        val docRef = db.collection("Users").get()
+            .addOnSuccessListener { documentSnapshot ->
+                val selectUser = documentSnapshot.toObjects(UsersData::class.java)
+                Log.d("TAG", selectUser.toString())
+            }
+            .addOnFailureListener { exception ->
+                Log.w("TAG", "Error getting documents: ", exception)
+            }*/
+
 
 
     }
@@ -198,6 +204,10 @@ class MainActivity : AppCompatActivity() {
         binding.MonthText.text = month.month.name
     }
 
+    override fun onResume() {
+        super.onResume()
+        binding.rvWorkout.adapter?.notifyDataSetChanged()
+    }
 
 
 
