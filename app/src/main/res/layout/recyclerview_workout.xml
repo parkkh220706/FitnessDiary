@@ -17,10 +17,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:includeFontPadding="false"
-            android:padding="4dp"
             android:text="Title"
             android:textColor="@color/black"
             android:fontFamily="@font/notosansr"
+            android:paddingLeft="4dp"
             android:textSize="20sp"
             android:textStyle="bold" />
 

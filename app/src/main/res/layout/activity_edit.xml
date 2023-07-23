@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@color/background"
     tools:context=".EditActivity">
 
     <com.google.android.material.appbar.AppBarLayout
@@ -24,45 +25,61 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-
         android:padding="16dp">
 
         <TextView
+            android:fontFamily="@font/notosansr"
+            android:includeFontPadding="false"
+            android:maxEms="20"
             android:padding="4dp"
+            android:textSize="18sp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="운동"/>
 
         <EditText
+            android:background="@drawable/bg_rectangle"
             android:id="@+id/tv_workout"
+            android:layout_marginTop="6dp"
+            android:padding="4dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="내용"/>
+            android:hint=""/>
 
         <TextView
             android:padding="4dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="시간"/>
+            android:layout_marginTop="16dp"
+            android:textSize="18sp"
+            android:text="운동시간"/>
 
         <TextView
             android:id="@+id/tv_date"
             android:padding="4dp"
+            android:textSize="18sp"
+            android:layout_marginTop="6dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="00:00"/>
 
         <TextView
+            android:textSize="18sp"
             android:padding="4dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
             android:text="기타"/>
 
         <EditText
             android:id="@+id/tv_memo"
+            android:background="@drawable/bg_rectangle"
+            android:backgroundTint="@color/white"
+            android:padding="4dp"
+            android:layout_marginTop="6dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="내용"/>
+            android:hint=""/>
 
 <!--        <TextView
             android:padding="4dp"
@@ -79,8 +96,14 @@
 
         <Button
             android:id="@+id/btn_done"
+            android:layout_marginTop="16dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:backgroundTint="@color/primary"
+            android:textSize="16dp"
+            android:textStyle="bold"
+            android:fontFamily="@font/head1"
+            android:includeFontPadding="false"
             android:text="입력완료"/>
 
 
