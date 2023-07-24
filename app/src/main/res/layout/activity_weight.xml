@@ -20,8 +20,12 @@
             <Button
                 android:id="@+id/btn_menu"
                 android:layout_width="40dp"
-                android:layout_height="30dp"
-                android:background="@drawable/ic_menu"/>
+                android:layout_height="40dp"
+                android:layout_marginStart="4dp"
+                android:layout_marginTop="4dp"
+                android:layout_marginEnd="4dp"
+                android:layout_marginBottom="4dp"
+                android:background="@drawable/ic_menu" />
 
         </com.google.android.material.appbar.AppBarLayout>
 
@@ -30,6 +34,37 @@
             android:layout_width="match_parent"
             android:layout_height="500dp"
             android:padding="10dp"/>
+
+        <TextView
+            android:id="@+id/tv_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="날짜"
+            android:fontFamily="@font/notosansr"
+            android:includeFontPadding="false"
+            android:textSize="20sp"
+            android:layout_gravity="center_horizontal"
+            android:padding="4dp"/>
+
+        <TextView
+            android:id="@+id/tv_weight"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="몸무게"
+            android:fontFamily="@font/notosansr"
+            android:includeFontPadding="false"
+            android:textSize="20sp"
+            android:layout_gravity="center_horizontal"
+            android:padding="4dp"
+            />
+
+        <ImageView
+            android:id="@+id/btn_add"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_gravity="center"
+            android:layout_margin="10dp"
+            android:src="@drawable/plus"/>
 
     </androidx.appcompat.widget.LinearLayoutCompat>
 

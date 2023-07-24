@@ -14,18 +14,19 @@
             android:id="@+id/numberPicker1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
             android:layout_centerInParent="true"
+            android:layout_margin="10dp"
             tools:ignore="MissingConstraints" />
 
         <NumberPicker
             android:id="@+id/numberPicker2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
             android:layout_centerInParent="true"
+            android:layout_margin="10dp"
             android:layout_toRightOf="@+id/numberPicker1"
             tools:ignore="MissingConstraints" />
+
 
     </androidx.appcompat.widget.LinearLayoutCompat>
 

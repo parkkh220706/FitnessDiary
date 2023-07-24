@@ -35,33 +35,38 @@
                         android:layout_marginBottom="4dp"
                         android:background="@drawable/ic_menu" />
 
-                    <TextView
-                        android:padding="4dp"
-                        android:layout_centerHorizontal="true"
-                        android:includeFontPadding="false"
-                        android:fontFamily="@font/head1"
-                        android:id="@+id/YearText"
+                    <RelativeLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="center_horizontal"
-                        android:paddingHorizontal="6dp"
-                        android:text="2023"
-                        android:textSize="26sp"
-                        android:textStyle="bold" />
+                        android:layout_centerHorizontal="true">
 
-                    <TextView
-                        android:padding="4dp"
-                        android:fontFamily="@font/head1"
-                        android:includeFontPadding="false"
-                        android:id="@+id/MonthText"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_horizontal"
-                        android:layout_below="@id/YearText"
-                        android:layout_centerHorizontal="true"
-                        android:letterSpacing="0.2"
-                        android:text="July"
-                        android:textSize="28sp" />
+                        <TextView
+                            android:padding="4dp"
+                            android:includeFontPadding="false"
+                            android:fontFamily="@font/head1"
+                            android:id="@+id/YearText"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:paddingHorizontal="6dp"
+                            android:text="2023"
+                            android:textSize="26sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:padding="4dp"
+                            android:fontFamily="@font/head1"
+                            android:includeFontPadding="false"
+                            android:id="@+id/MonthText"
+                            android:layout_toRightOf="@id/YearText"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:letterSpacing="0.2"
+                            android:text="July"
+                            android:textSize="26sp" />
+
+                    </RelativeLayout>
+
+
 
 
                 </RelativeLayout>
@@ -94,14 +99,26 @@
                 android:id="@+id/tv"/>
 
             <androidx.recyclerview.widget.RecyclerView
-                android:layout_marginBottom="44dp"
                 android:id="@+id/rv_workout"
                 android:background="@color/white"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+                android:layout_height="300dp"
+                app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
 
+            <Button
+                android:layout_gravity="bottom"
+                android:id="@+id/btn_add"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:backgroundTint="@color/primary"
+                android:textColor="@color/white"
+                app:layout_anchor="@id/main_drawer_layout"
+                app:layout_anchorGravity="bottom|center_horizontal"
+                android:text="Add Workout" />
 
         </androidx.appcompat.widget.LinearLayoutCompat>
+
+
 
 
         <com.google.android.material.navigation.NavigationView
@@ -112,20 +129,12 @@
             app:headerLayout="@layout/drawer_header"
             app:menu="@menu/drawer_menu"/>
 
+
+
     </androidx.drawerlayout.widget.DrawerLayout>
 
 
-    <Button
-        android:layout_gravity="bottom|center_horizontal"
-        android:id="@+id/btn_add"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:backgroundTint="@color/primary"
-        app:layout_anchor="@id/main_drawer_layout"
-        app:layout_anchorGravity="bottom|center_horizontal"
-        android:padding="0dp"
-        android:layout_margin="0dp"
-        android:text="Add Workout" />
+
 
 
 

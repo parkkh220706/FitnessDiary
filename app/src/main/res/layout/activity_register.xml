@@ -13,19 +13,30 @@
         android:ems="10"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:background="@drawable/bg_rectangle"
+        android:padding="6dp"
         android:hint="E-mail"
+        android:inputType="textEmailAddress"
         android:layout_gravity="center"/>
 
     <EditText
         android:id="@+id/et_pw"
         android:ems="10"
-        android:hint="password"
+        android:hint="PASSWORD"
+        android:inputType="textPassword"
+        android:padding="6dp"
+        android:layout_marginTop="15dp"
+        android:background="@drawable/bg_rectangle"
         android:layout_below="@+id/et_id"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"/>
 
     <Button
+        android:backgroundTint="@color/primary"
+        android:fontFamily="@font/head2"
+        android:layout_marginTop="15dp"
+        android:textColor="@color/white"
         android:id="@+id/btn_register"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

@@ -9,33 +9,47 @@
     tools:context=".LoginActivity">
 
         <EditText
+            android:background="@drawable/bg_rectangle"
             android:id="@+id/et_id"
             android:ems="10"
+            android:padding="6dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:hint="id"
+            android:inputType="textEmailAddress"
+            android:hint="E-mail"
             android:layout_gravity="center"/>
 
         <EditText
             android:id="@+id/et_pw"
             android:ems="10"
-            android:hint="pw"
+            android:hint="PASSWORD"
+            android:padding="6dp"
+            android:layout_marginTop="15dp"
+            android:inputType="textPassword"
+            android:background="@drawable/bg_rectangle"
             android:layout_below="@+id/et_id"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"/>
 
         <Button
+            android:backgroundTint="@color/primary"
             android:id="@+id/btn_login"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:fontFamily="@font/head2"
+            android:textColor="@color/white"
             android:text="로그인"/>
 
         <Button
             android:id="@+id/btn_register"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="10dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:backgroundTint="@color/primary"
+            android:fontFamily="@font/head2"
+            android:textColor="@color/white"
             android:text="회원가입"/>
 
        <!-- <Button

@@ -4,6 +4,8 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Gravity
+import android.widget.NumberPicker
+import androidx.appcompat.app.AlertDialog
 import androidx.drawerlayout.widget.DrawerLayout
 import com.github.mikephil.charting.charts.LineChart
 import com.github.mikephil.charting.components.Description
@@ -45,6 +47,10 @@ class WeightActivity : AppCompatActivity() {
             true
         }
 
+        binding.btnAdd.setOnClickListener {
+            showWeightDialog()
+        }
+
 
 
     }
@@ -67,5 +73,33 @@ class WeightActivity : AppCompatActivity() {
         xAxis.granularity = 1f
         xAxis.textColor = R.color.black
 
+    }
+
+    private fun showWeightDialog(){
+        val dialogView = layoutInflater.inflate(R.layout.dialog_weightpicker, null)
+        val weightPicker1 = dialogView.findViewById<NumberPicker>(R.id.WeightPicker1)
+        val weightPicker2 = dialogView.findViewById<NumberPicker>(R.id.WeightPicker2)
+
+        weightPicker1.minValue = 0
+        weightPicker1.maxValue = 150
+        weightPicker2.minValue = 0
+        weightPicker2.maxValue = 9
+        weightPicker1.value =50
+
+        val builder = AlertDialog.Builder(this)
+        builder.setView(dialogView)
+            .setPositiveButton("확인") { dialogInterface, i ->
+
+                val selectedKg = weightPicker1.value
+                val selectedweight = weightPicker2.value
+                val selectedTime = String.format("%02d.%02d kg", selectedKg, selectedweight)
+
+                binding.tvWeight.text = selectedTime
+            }
+            .setNegativeButton("취소") { dialogInterface, i ->
+                dialogInterface.dismiss()
+            }
+        val dialog = builder.create()
+        dialog.show()
     }
 }
