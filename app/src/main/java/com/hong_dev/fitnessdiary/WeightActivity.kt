@@ -48,7 +48,8 @@ class WeightActivity : AppCompatActivity() {
         }
 
         binding.btnAdd.setOnClickListener {
-            showWeightDialog()
+            val i : Intent = Intent(this, WeightEditActivity::class.java)
+            startActivity(i)
         }
 
 
@@ -75,7 +76,7 @@ class WeightActivity : AppCompatActivity() {
 
     }
 
-    private fun showWeightDialog(){
+   /* private fun showWeightDialog(){
         val dialogView = layoutInflater.inflate(R.layout.dialog_weightpicker, null)
         val weightPicker1 = dialogView.findViewById<NumberPicker>(R.id.WeightPicker1)
         val weightPicker2 = dialogView.findViewById<NumberPicker>(R.id.WeightPicker2)
@@ -94,12 +95,12 @@ class WeightActivity : AppCompatActivity() {
                 val selectedweight = weightPicker2.value
                 val selectedTime = String.format("%02d.%02d kg", selectedKg, selectedweight)
 
-                binding.tvWeight.text = selectedTime
+
             }
             .setNegativeButton("취소") { dialogInterface, i ->
                 dialogInterface.dismiss()
             }
         val dialog = builder.create()
         dialog.show()
-    }
+    }*/
 }

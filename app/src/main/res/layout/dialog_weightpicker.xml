@@ -5,15 +5,7 @@
     android:gravity="center"
     android:orientation="vertical">
 
-    <DatePicker
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:datePickerMode="spinner"
-        android:calendarViewShown="false"/>
 
-    <RelativeLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
 
         <NumberPicker
             android:id="@+id/WeightPicker1"
@@ -28,7 +20,5 @@
             android:layout_toRightOf="@+id/WeightPicker1"
             android:layout_margin="10dp" />
 
-
-    </RelativeLayout>
 
 </androidx.appcompat.widget.LinearLayoutCompat>

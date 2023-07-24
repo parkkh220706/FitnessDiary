@@ -1,9 +1,96 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/background"
     tools:context=".WeightEditActivity">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/background">
+
+        <androidx.appcompat.widget.Toolbar
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/toolbar">
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal">
+
+                <TextView
+                    android:padding="4dp"
+                    android:includeFontPadding="false"
+                    android:fontFamily="@font/head1"
+                    android:id="@+id/YearText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingHorizontal="6dp"
+                    android:text="2023"
+                    android:textSize="26sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:padding="4dp"
+                    android:fontFamily="@font/head1"
+                    android:includeFontPadding="false"
+                    android:id="@+id/MonthText"
+                    android:layout_toRightOf="@id/YearText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:letterSpacing="0.2"
+                    android:text="July"
+                    android:textSize="26sp" />
+
+            </RelativeLayout>
+
+        </androidx.appcompat.widget.Toolbar>
+
+
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+
+
+    <com.kizitonwose.calendar.view.CalendarView
+        android:id="@+id/Weight_calendarView"
+        android:layout_margin="16dp"
+        app:cv_outDateStyle="endOfRow"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:background="@color/white"
+        app:cv_dayViewResource="@layout/calendar_day"
+        app:cv_monthHeaderResource="@layout/calendar_header"
+        app:cv_daySize="rectangle" />
+
+    <EditText
+        android:id="@+id/et_Weight"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:hint="몸무게"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/bg_rectangle"
+        android:inputType="numberDecimal"
+        android:padding="10dp"
+        android:gravity="center"
+        android:textSize="35sp"/>
+
+    <Button
+        android:id="@+id/btn_done"
+        android:layout_marginTop="16dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/primary"
+        android:textSize="16dp"
+        android:textStyle="bold"
+        android:fontFamily="@font/head1"
+        android:includeFontPadding="false"
+        android:text="저장하기"/>
+
+</androidx.appcompat.widget.LinearLayoutCompat>
