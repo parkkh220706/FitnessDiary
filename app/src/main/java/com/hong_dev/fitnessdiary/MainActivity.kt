@@ -110,6 +110,12 @@ class MainActivity : AppCompatActivity() {
                     val intent = Intent(this, WeightActivity::class.java)
                     startActivity(intent)
                 }
+                R.id.menu_logout -> {
+                    auth.signOut()
+                    finish()
+                    val intent = Intent(this, LoginActivity::class.java)
+                    startActivity(intent)
+                }
             }
             true
         }
@@ -242,6 +248,7 @@ class MainActivity : AppCompatActivity() {
         super.onResume()
         binding.rvWorkout.adapter?.notifyDataSetChanged()
     }
+
 
 
 

@@ -2,9 +2,15 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item android:id="@+id/menu_home"
-        android:title="diary"/>
+        android:title="DIARY"/>
 
     <item android:id="@+id/menu_weight"
-        android:title="weight"/>
+        android:title="WEIGHT CHART"/>
+
+    <item
+        android:id="@+id/menu_logout"
+        android:title="LOGOUT" />
+
+
 
 </menu>
