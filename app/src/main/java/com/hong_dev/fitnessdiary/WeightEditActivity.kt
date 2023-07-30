@@ -141,7 +141,7 @@ class WeightEditActivity : AppCompatActivity() {
 
             var weightData = WeightData(uid, date, weight)
 
-            db.collection(uid)
+           /* db.collection(uid)
                 .add(weightData)
                 .addOnSuccessListener { documentReference ->
                     Toast.makeText(this, "성공", Toast.LENGTH_SHORT).show()
@@ -149,7 +149,16 @@ class WeightEditActivity : AppCompatActivity() {
                 }
                 .addOnFailureListener { e ->
                     Toast.makeText(this, "실패", Toast.LENGTH_SHORT).show()
+                }*/
+
+            db.collection("weight")
+                .add(weightData)
+                .addOnSuccessListener { documentReference ->
+                    Toast.makeText(this, "성공", Toast.LENGTH_SHORT).show()
+                    finish()
                 }
+                .addOnFailureListener { e ->
+                    Toast.makeText(this, "실패", Toast.LENGTH_SHORT).show() }
         }
     }
 

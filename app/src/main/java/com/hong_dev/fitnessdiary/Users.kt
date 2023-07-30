@@ -2,7 +2,7 @@ package com.hong_dev.fitnessdiary
 
 data class ExerciseData(
     var workout: String = "",
-    var time: String = "",
+    var time: String = "0",
     var memo: String = ""
 )
 

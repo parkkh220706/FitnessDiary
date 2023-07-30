@@ -57,7 +57,17 @@ class EditActivity : AppCompatActivity() {
             var exerciseData = ExerciseData(workout, time, memo)
             var usersData = UsersData(uid, date, exerciseData )
 
-            db.collection(uid)
+           /* db.collection(uid)
+                .add(usersData)
+                .addOnSuccessListener { documentReference ->
+                    Toast.makeText(this, "성공", Toast.LENGTH_SHORT).show()
+                    finish()
+                }
+                .addOnFailureListener { e ->
+                    Toast.makeText(this, "실패", Toast.LENGTH_SHORT).show()
+                }*/
+
+            db.collection("diary")
                 .add(usersData)
                 .addOnSuccessListener { documentReference ->
                     Toast.makeText(this, "성공", Toast.LENGTH_SHORT).show()
@@ -66,6 +76,7 @@ class EditActivity : AppCompatActivity() {
                 .addOnFailureListener { e ->
                     Toast.makeText(this, "실패", Toast.LENGTH_SHORT).show()
                 }
+
         }
 
     }

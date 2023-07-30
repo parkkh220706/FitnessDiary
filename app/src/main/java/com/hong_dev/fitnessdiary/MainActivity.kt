@@ -157,7 +157,7 @@ class MainActivity : AppCompatActivity() {
                         }
                     }
 
-                    db.collection(uid)
+                    /*db.collection(uid)
                         .whereEqualTo("date", selectedDate.toString())
                         .get()
                         .addOnSuccessListener { result ->
@@ -171,7 +171,25 @@ class MainActivity : AppCompatActivity() {
                         }
                         .addOnFailureListener() { exception ->
                             Log.w(TAG, "Error getting documents.", exception)
+                        }*/
+
+                    db.collection("diary")
+                        .whereEqualTo("date", selectedDate.toString())
+                        .whereEqualTo("uid", uid)
+                        .get()
+                        .addOnSuccessListener { result ->
+                            val userDataList = mutableListOf<UsersData>()
+                            for (document in result) {
+                                val exerciseData = document.toObject(UsersData::class.java)
+                                userDataList.add(exerciseData)
+                            }
+                            val adapter = UsersDataAdapter(userDataList)
+                            recyclerview.adapter = adapter
                         }
+                        .addOnFailureListener() { exception ->
+                            Log.w(TAG, "Error getting documents.", exception)
+                        }
+
                     binding.tv.text = selectedDate.toString()
                 }
 

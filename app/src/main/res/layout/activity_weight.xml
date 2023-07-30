@@ -29,11 +29,10 @@
 
         </com.google.android.material.appbar.AppBarLayout>
 
-        <com.github.mikephil.charting.charts.LineChart
-            android:id="@+id/chart"
+        <com.github.mikephil.charting.charts.BarChart
             android:layout_width="match_parent"
             android:layout_height="500dp"
-            android:padding="10dp"/>
+            android:id="@+id/weight_chart"/>
 
         <ImageView
             android:id="@+id/btn_add"
