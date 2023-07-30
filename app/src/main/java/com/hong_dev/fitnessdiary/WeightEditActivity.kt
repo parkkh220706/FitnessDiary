@@ -5,6 +5,7 @@ import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.MenuItem
 import android.view.View
 import android.widget.TextView
 import android.widget.Toast
@@ -160,6 +161,11 @@ class WeightEditActivity : AppCompatActivity() {
                 .addOnFailureListener { e ->
                     Toast.makeText(this, "실패", Toast.LENGTH_SHORT).show() }
         }
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressedDispatcher.onBackPressed()
+        return super.onSupportNavigateUp()
     }
 
 
