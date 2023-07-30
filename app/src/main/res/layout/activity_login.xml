@@ -8,6 +8,12 @@
     android:gravity="center"
     tools:context=".LoginActivity">
 
+        <ImageView
+            android:layout_width="250dp"
+            android:layout_height="250dp"
+            android:padding="30dp"
+            android:src="@drawable/ic_running"/>
+
         <EditText
             android:background="@drawable/bg_rectangle"
             android:id="@+id/et_id"

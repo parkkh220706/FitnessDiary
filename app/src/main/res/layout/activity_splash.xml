@@ -6,4 +6,9 @@
     android:layout_height="match_parent"
     tools:context=".SplashActivity">
 
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/bg_splash3"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
